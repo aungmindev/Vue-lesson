@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<link>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="assset/css/bootstrap.css">
+</head>
+<body>
+     <div id="app" class="container">
+        <div class="mt-5">
+            <h1>Method =>{{ m1 + m2 }}</h1>
+            <h1>Computed => {{ m1 + m2 }}</h1>
+            <div class="row">
+                <button class="btn btn-primary" @click="method()">Plus Method</button>
+                <button class="btn btn-success ml-5">Plus Computed</button>
+
+            </div>
+        </div>
+          <la></la>
+          <gc></gc>
+     </div>
+
+
+
+
+    <script src="assset/js/jquery.js"></script>
+    <script src="assset/js/popper.js"></script>
+    <script src="assset/js/bootstrap.js"></script>
+    <script src="vue3.js"></script>
+
+    <script>
+         const localComponent = {
+             template : "<h1>Hello Local Component</h1>"
+         }
+        let app = Vue.createApp({
+            data(){
+                return {
+                    m1 : 1,
+                    m2 : 1,
+                    watcher : 0
+                }
+            },
+            components : {
+               la : localComponent
+            },
+            computed : {
+                callText (){
+                    return this.number
+                }
+            },
+            watch : {
+               watcher(){
+                  alert('Watcher Work')
+               }
+            },
+            methods : {
+                method(){
+                  this.watcher++
+                  this.m1++
+                  this.m2++
+                }
+            },
+            created(){
+              
+            }
+
+        })
+        app.component('gc',{
+            template : '<h1>{{ text }} Global Coponent</h1>',
+            data (){
+               return {
+                   text : 'Hola'
+               }
+            }
+        })
+        app.mount('#app')
+    </script>
+</body>
+</html>

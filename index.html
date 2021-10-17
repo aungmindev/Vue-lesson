@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="assset/css/bootstrap.css"></link>
+    <link rel="stylesheet" type="text/css" href='assset/css/custom.css'>
+</head>
+<body>
+     <div id="app" class="container-fluid">
+           <div class="mt-5 mb-5">
+               <h1 class="text-center text-primary">Vue 1st Game Practise</h1>
+           </div>
+           <div class="row mt-5 d-flex justify-content-center">
+            <div class="col-md-3" v-for="btn in btns">
+                <button class="btn btn-lg " :class="btn.color"><span class="badge badge-pill badge-light">{{ btn.no }}</span></button>
+            </div>
+                 
+           </div>
+           <div class="mt-5 d-flex justify-content-center col-md-9">
+            <div class="col-md-3 ">
+          <button class="col-md-12 btn btn-lg btn-dark" @click="startGame()">Click to start.Good luck Guys!</button>
+
+            </div>
+            
+           </div>
+           
+           <div class="alert alert-warning alert-dismissible fade show" v-if="start" role="alert">
+            <strong class="text-bold text-white">Game is started</strong> <p class="text-bold text-white">Please wait to complete game!</p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+           
+
+          <!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Game Result</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h1>{{ this.result }}</h1>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        </div>
+     
+
+   
+
+     <script src="assset/js/jquery.js"></script>
+     <script src="assset/js/popper.js"></script>
+     <script src="assset/js/bootstrap.js"></script>
+     <script src="vue3.js"></script>
+    <script>
+         const app = Vue.createApp({
+              data(){
+                  return {
+                      arr : [[1,2,3],[1,2,3],[1,2,3]],
+                      btns : [
+                        {no : '#' , color : 'btn-success'},
+                        {no : '#' , color : 'btn-primary'},
+                        {no : '#' , color : 'btn-info'},
+                      ],
+                      
+                      start : false,
+                      result : '',
+                  }
+              },
+              methods : {
+                  hey (){
+                      this.arr.map((data) => {
+                          console.log(Math.floor((Math.random() * data.length) + 1))
+                      })
+                     
+                  },
+
+                   delay(no){
+                    return new Promise((resolve , reject)=>{
+                        setTimeout(resolve, no)
+                    })
+
+                  },
+                   startGame () {
+                       (async ()=>{
+                       let resultCheck = 0
+                       this.btns =  [
+                       {no : '#' , color : 'btn-success'},
+                       {no : '#' , color : 'btn-primary'},
+                       {no : '#' , color : 'btn-info'},
+                     ],
+                       this.start = true
+                        for(let i = 0 ; i < this.arr.length ; i++){
+                        let random = Math.floor((Math.random() * this.arr[i].length) + 1)
+                           resultCheck += random
+                           await this.delay(2000)
+                           this.btns[i]['no'] = random
+                        }
+                        $('#exampleModalCenter').modal('show')
+                        this.start = false
+                        if(this.btns[0]['no'] * 3 == resultCheck){
+                         this.result = 'You Won'  
+                        }else{
+                         this.result = 'Failed ! Game Over'  
+                        }
+                       })()
+                    
+                  }
+              }
+         })
+
+         app.mount('#app')
+    </script>
+</body>
+</html>

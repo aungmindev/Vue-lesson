@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<link>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="assset/css/bootstrap.css">
+</head>
+<body>
+     <div id="app" class="container">
+        
+          <select v-model="select" multiple>
+              <option value="">Select One Language</option>
+              <option value="Language of php">Php</option>
+              <option value="Language of Python">Python</option>
+              <option value="Language of Node">Node</option>
+          </select>
+
+          <h1>{{ select == '' ? 'Nothing to show' : select }}</h1>
+
+          <div class="mt-5">
+            <div class="form-check form-check-inline">
+                <input v-model="cb" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="form-check-label" for="inlineCheckbox1">1</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input v-model="cb" class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                <label class="form-check-label" for="inlineCheckbox2">2</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input v-model="cb" class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
+              </div>
+
+             
+              <h2> {{ cb }}</h2>
+
+              <div class="mt-5">
+                 <h1>{{ time }}</h1>
+              </div>
+          </div>
+
+           
+          <button @click="addtoclick(1)">Click to add</button>
+
+          <button class="btn" v-bind:class="classBind.color">Class Binding</button>
+          <button class="btn" v-bind:class="classBind">Class Binding</button>
+
+          <input type="text" v-model="text">
+          <button class="btn" v-bind:class="{'btn-danger' : time == 0 ? color : false , 'disabled' : text.length > 3 ? false : true }">Class Binding</button>
+          <button class="btn" v-bind:class="[Arraycolor , ArrayD]">Class Binding Array</button>
+
+          <div class="mt-5">
+              <h3 :style="{'color' : styleBinf.color , 'text-decoration' : time == 1 ? 'line-through' : ''}">This is style binding</h3>
+              <h3 :style="[stylearr]">This is style binding array</h3>
+          </div>
+
+
+          <div class="mt-5">
+              <h1 v-if="time == 0">This is condition</h1>
+              <h1 v-else>This is not condition</h1>
+          </div>
+
+          <div class="mt-5">
+             <h1 v-for="obj in myObject">{{ obj }}</h1>
+        </div>
+     </div>
+
+
+
+
+    <script src="assset/js/jquery.js"></script>
+    <script src="assset/js/popper.js"></script>
+    <script src="assset/js/bootstrap.js"></script>
+    <script src="vue3.js"></script>
+
+    <script>
+
+        let app = Vue.createApp({
+            data(){
+                return {
+                    select : '',
+                    cb     : [],
+                    time : 0,
+                    classBind : {color : 'btn-danger'},
+                    classBind : {'btn-danger' : true , 'disabled' : true },
+                    color : true,
+                    disabled : true,
+                    text : '',
+                    Arraycolor : 'btn-danger',
+                    ArrayD : 'disabled',
+
+                    styleBinf : {color : 'red'},
+                    stylearr  : {'color' : 'red' , 'text-decoration' : 'line-through'},
+                    bool : false,
+                    myObject: {
+                        title: 'How to do lists in Vue',
+                        author: 'Jane Doe',
+                        publishedAt: '2016-04-10'
+                      }
+                }
+            },
+            methods : {
+                addtoclick(color){
+                    this.time += color
+                }
+            },
+            created(){
+              
+            }
+
+        })
+
+        app.mount('#app')
+    </script>
+</body>
+</html>

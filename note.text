@@ -1,0 +1,27 @@
+1.Vue Intro
+2.Vue Installation and Bootstrap and Jquery
+3. Vue Create App
+4. Text Rendering / 
+    Raw HTML / 
+    Attributes binding /
+    Using JavaScript Expressions /
+    Two way data bindind /
+    Directives (Using with v- {v-if , v-show , v-bind , v-model}) /
+    Methods /
+    mounted / created
+    Short Hand
+
+
+     ============================== Day || 2 Week 2===========================
+     Computed and Watcher
+     Event Handling
+        -  Once /  (it is used for one time event)
+           trim /   (it trims for space)
+           number / (it make data to number)
+           lazy /  ()
+           stop (Prevent child from parents event)
+     Game Tutorial Sharing
+
+     
+
+

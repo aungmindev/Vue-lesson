@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<link>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="assset/css/bootstrap.css">
+</head>
+<body>
+     <div id="app" class="container-fluid">
+         <h1>{{ name }}</h1>
+         <h1 v-text="name"></h1>
+         <h1 v-html="html"></h1>
+        <h1 v-bind:id="id">This is id binding</h1>
+
+        <h1 v-bind:class="classb">This is class binding</h1>
+        <button v-bind:class="btn">Hello</button><br><br>
+        <a v-bind:href="href">G t G</a>
+
+       <h1>{{ bool ? 'This is true' : 'False' }}</h1>
+       <button v-bind:class="bool ? 'btn btn-danger' : 'btn btn-primary' ">Hello</button><br><br>
+
+       <input v-model="model" type="text" class="form-control">
+       <h1>{{ model }}</h1>
+
+       <input type="checkbox" v-model="cb">
+       <label>{{ cb }}</label>
+
+       <!-- multiple cb -->
+
+       <input type="checkbox" v-model="mcb" value="A">
+       <label>one</label>
+       <input type="checkbox" v-model="mcb" value="B">
+       <label>two</label>
+         <h1>{{ mcb }}</h1>
+
+         <select v-model="selectm" multiple>
+            <option value="">Choose</option>
+               <option>One</option>
+               <option>Two</option>
+               <option>Three</option>
+           </select>
+           <h1>{{ selectm }}</h1>
+       <!-- multiple cb -->
+
+       <select v-model="select">
+        <option value="">Choose</option>
+           <option>One</option>
+           <option>Two</option>
+           <option>Three</option>
+       </select>
+       <label>{{ select }}</label>
+
+       <ul>
+           <li v-for="data in loop">{{ data }}</li>
+       </ul>
+       <ul>
+           <div v-for="obj in loopobj">
+               <div v-for="obj2 in obj">{{ obj2 }}</div>
+           </div>
+       </ul>
+
+       <button class="btn btn-primary" v-on:click="sample()">Click Method</button>
+
+       <h1 :style="[styleb , {'text-decoration' : 'line-through' }]">This is style binding</h1>
+     </div>
+     
+
+
+
+
+    <script src="assset/js/jquery.js"></script>
+    <script src="assset/js/popper.js"></script>
+    <script src="assset/js/bootstrap.js"></script>
+    <script src="vue3.js"></script>
+
+    <script>
+
+        let app = Vue.createApp({
+            data(){
+                return {
+                    name : 'mgmg',
+                    html : '<span class="text-danger">This is span tag!</span>',
+                    id : 'custom',
+                    classb : 'text-primary',
+                    btn  : 'btn btn-danger btn-lg',
+                    href : 'https://google.com',
+                    bool : false,
+                    model : '',
+                    cb : true,
+                    select : '',
+                    loop : [1,2,3,4,5],
+                    loopobj   : [ [1,2,3] ,  [4,5,6] ,  [7,8,9]],
+                    mcb : [],
+                    selectm : '',
+                    styleb : {color : 'red' , 'font-size' : '10rem'}
+                }
+            },
+            methods : {
+               sample(){
+                   this.btn = 'btn btn-dark btn-lg'
+               }
+            }
+
+        })
+
+        app.mount('#app')
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<link>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="assset/css/bootstrap.css">
+</head>
+<body>
+     <div id="app" class="container-fluid">
+          <h1>{{ name }}</h1>
+          <h1>{{ age }}</h1>
+          <h1 v-text="name"></h1>
+
+          <h1 v-html="html"></h1>
+
+          <h3 v-bind:title="title">This is title attr</h3>
+          <h3 v-bind:id="id">This is ID attr</h3>
+          <a v-bind:href="href">G t G</a>
+          
+          <h2>{{ bool ? "SUccess" : "Fail" }}</h2>
+
+          <input type="text" v-model="tb" class="" placeholder="Enter Your Name">
+          <select>
+              <option v-for="(data , index) in select">{{ data }}</option>
+          </select>
+
+          <input type="checkbox" v-model="checkbox"  value="checkbox">
+
+          <h1>{{ tb }}</h1>
+           
+         <div >
+            <input type="checkbox" v-model="checkbox" class="form-control">
+            <label>{{ checkbox }}</label>
+         </div>
+          <ul>
+             <li >{{ i }}</li>
+          </ul>
+          <div v-for="i in select" >
+              <div v-for="j in i">
+                 {{ j }}
+              </div>
+          </div>
+          <button @click="test" v-if="assign == 0 ? true : false" class="btn btn-danger">CLick</button>
+     </div>
+
+
+
+
+    <script src="assset/js/jquery.js"></script>
+    <script src="assset/js/popper.js"></script>
+    <script src="assset/js/bootstrap.js"></script>
+    <script src="vue3.js"></script>
+
+    <script>
+
+        let app = Vue.createApp({
+            data(){
+                return {
+                  name : 'Aung Myat',
+                  age : 30,
+                  html : '<span class="text-danger">This is span tag.</span>',
+                  title : 'This is custom title',
+                  id : 'like',
+                  href : 'https://google.com',
+                  bool : false,
+                  tb   : '',
+                  select   : [ [1,2,3] ,  [4,5,6] ,  [7,8,9]],
+                  checkbox : false,
+                  src : '',
+                  assign : 0
+                }
+            },
+            methods : {
+                test(){
+                    this.name = 'Myat Aung';
+                    alert(this.name)
+                }
+            }
+        })
+
+        app.mount('#app')
+    </script>
+</body>
+</html>
